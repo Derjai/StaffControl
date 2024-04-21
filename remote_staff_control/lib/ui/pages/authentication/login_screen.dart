@@ -1,22 +1,31 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
-
-//import '../../controllers/email_controller.dart';
-//import '../../controllers/password_controller.dart';
+import 'package:remote_staff_control/ui/controllers/auth_controller.dart';
+import '../../controllers/email_controller.dart';
+import '../../controllers/password_controller.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
   @override
-  _LoginScreenState createState() => _LoginScreenState();
+  State<LoginScreen> createState() => _LoginScreenState();
 }
 
 class _LoginScreenState extends State<LoginScreen> {
   bool obscureText = true;
+  final AuthController authController = AuthController(
+    emailController: EmailController(),
+    passwordController: PasswordController(),
+  );
+
+  @override
+  void dispose() {
+    authController.emailController.dispose();
+    authController.passwordController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
-    // TODO: Implement validations
-    //final EmailController emailController = EmailController();
-    //final PasswordController passwordController = PasswordController();
-
     return Scaffold(
         appBar: AppBar(
           title: const Text('Login'),
@@ -32,14 +41,16 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const TextField(
-                        decoration: InputDecoration(
+                      TextField(
+                        controller: authController.emailController,
+                        decoration: const InputDecoration(
                           labelText: 'Email Address',
                         ),
-                        style: TextStyle(fontSize: 24),
+                        style: const TextStyle(fontSize: 24),
                       ),
                       const SizedBox(height: 20),
                       TextField(
+                        controller: authController.passwordController,
                         decoration: InputDecoration(
                           labelText: 'Password',
                           suffixIcon: IconButton(
@@ -58,11 +69,22 @@ class _LoginScreenState extends State<LoginScreen> {
                         obscureText: obscureText,
                         style: const TextStyle(fontSize: 20),
                       ),
-                      const SizedBox(
-                          height: 20), // Más espacio entre los campos
+                      const SizedBox(height: 20),
                       ElevatedButton(
                         onPressed: () {
-                          Navigator.pushNamed(context, '/coordinator');
+                          // Hardcoded users a@a.com and b@b.com with password 0000
+                          Completer completer = Completer();
+                          String email = authController.emailController.text;
+                          String password =
+                              authController.passwordController.text;
+                          bool result = email == 'a@a.com' ||
+                              email == 'b@b.com' && password == '0000';
+                          if (result) {
+                            completer.complete();
+                          }
+                          completer.future.then((_) {
+                            Navigator.pushNamed(context, '/coordinator');
+                          });
                         },
                         style: ElevatedButton.styleFrom(
                           padding: const EdgeInsets.symmetric(
@@ -81,18 +103,20 @@ class _LoginScreenState extends State<LoginScreen> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const SizedBox(
-                      width: 300, // Define the width of the TextField
+                    SizedBox(
+                      width: 300,
                       child: TextField(
-                        decoration: InputDecoration(
+                        controller: authController.emailController,
+                        decoration: const InputDecoration(
                           labelText: 'Email Address',
                         ),
                       ),
                     ),
                     const SizedBox(height: 16),
                     SizedBox(
-                      width: 300, // Define the width of the TextField
+                      width: 300,
                       child: TextField(
+                        controller: authController.passwordController,
                         decoration: InputDecoration(
                           labelText: 'Password',
                           suffixIcon: IconButton(
@@ -113,8 +137,16 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     const SizedBox(height: 16),
                     ElevatedButton(
-                      onPressed: () {
-                        Navigator.pushNamed(context, '/support');
+                      onPressed: () async {
+                        Completer completer = Completer();
+                        bool result =
+                            await authController.authenticate(context);
+                        if (result) {
+                          completer.complete();
+                        }
+                        completer.future.then((_) {
+                          Navigator.pushNamed(context, '/support');
+                        });
                       },
                       child: const Text('Login'),
                     ),
