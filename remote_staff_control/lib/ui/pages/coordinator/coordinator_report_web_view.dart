@@ -43,6 +43,7 @@ class _CoordinatorReportWebViewState extends State<CoordinatorReportWebView> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Reportes de Trabajo'),
+        backgroundColor: Theme.of(context).colorScheme.primary,
       ),
       body: Center(
         child: SingleChildScrollView(

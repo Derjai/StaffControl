@@ -8,6 +8,7 @@ class CoordinatorClientWebView extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Clientes'),
+        backgroundColor: Theme.of(context).colorScheme.primary,
       ),
       body: SingleChildScrollView(
         child: Column(

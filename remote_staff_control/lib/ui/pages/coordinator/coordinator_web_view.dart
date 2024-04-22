@@ -8,6 +8,7 @@ class CoordinatorWebView extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Bienvenido Coordinador!'),
+        backgroundColor: Theme.of(context).colorScheme.primary,
       ),
       body: Center(
         child: Column(

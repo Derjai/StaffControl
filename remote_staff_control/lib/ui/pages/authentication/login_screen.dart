@@ -72,13 +72,13 @@ class _LoginScreenState extends State<LoginScreen> {
                       const SizedBox(height: 20),
                       ElevatedButton(
                         onPressed: () {
-                          // Hardcoded users a@a.com and b@b.com with password 0000
+                          // Hardcoded users a@a.com and b@a.com with password 0000
                           Completer completer = Completer();
                           String email = authController.emailController.text;
                           String password =
                               authController.passwordController.text;
                           bool result = email == 'a@a.com' ||
-                              email == 'b@b.com' && password == '0000';
+                              email == 'b@a.com' && password == '0000';
                           if (result) {
                             completer.complete();
                           }

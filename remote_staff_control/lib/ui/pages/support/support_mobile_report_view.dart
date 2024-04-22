@@ -8,6 +8,7 @@ class SupportMobileReportView extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Reporte de Trabajo'),
+        backgroundColor: Theme.of(context).colorScheme.primary,
       ),
       body: Padding(
         padding: const EdgeInsets.all(20.0),

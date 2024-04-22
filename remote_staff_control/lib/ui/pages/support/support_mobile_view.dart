@@ -7,6 +7,7 @@ class SupportMobileView extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Bienvenido Usuario de Soporte!'),
+        backgroundColor: Theme.of(context).colorScheme.primary,
       ),
       body: Center(
         child: Column(
@@ -25,13 +26,13 @@ class SupportMobileView extends StatelessWidget {
             const SizedBox(height: 10.0),
             ElevatedButton(
               onPressed: () {
-                // Acción para el tercer botón
+                Navigator.pushNamed(context, '/support/reports');
               },
               child: const Text('Crear Reporte'),
             ),
           ],
         ),
       ),
-    ); // Blank view
+    );
   }
 }
