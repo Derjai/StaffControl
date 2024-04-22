@@ -4,7 +4,35 @@ class SupportMobileView extends StatelessWidget {
   const SupportMobileView({super.key});
   @override
   Widget build(BuildContext context) {
-    // TODO: Implement view
-    return Container(); // Blank view
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Bienvenido Usuario de Soporte!'),
+        backgroundColor: Theme.of(context).colorScheme.primary,
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Container(
+              margin: const EdgeInsets.only(bottom: 20.0),
+              child: const Text(
+                '¿Qué quieres hacer hoy?',
+                style: TextStyle(
+                  fontSize: 24.0,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+            const SizedBox(height: 10.0),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/support/reports');
+              },
+              child: const Text('Crear Reporte'),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }

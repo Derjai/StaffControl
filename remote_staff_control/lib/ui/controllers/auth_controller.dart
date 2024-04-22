@@ -15,7 +15,7 @@ class AuthController {
     final String email = emailController.text;
     final String password = passwordController.text;
 
-    // Hardcoded users a@a.com and b@b.com with password 0000
+    // Hardcoded users a@a.com and b@a.com with password 0000
 
     // Validate email and password fields
     if (email.isEmpty || password.isEmpty) {

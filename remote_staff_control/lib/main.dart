@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:remote_staff_control/ui/pages/authentication/login_screen.dart';
+import 'package:remote_staff_control/ui/pages/coordinator/coordinator_client_web_view.dart';
+import 'package:remote_staff_control/ui/pages/coordinator/coordinator_report_web_view.dart';
+import 'package:remote_staff_control/ui/pages/coordinator/coordinator_us_web_view.dart';
+import 'package:remote_staff_control/ui/pages/support/support_mobile_report_view.dart';
 
 import 'ui/pages/coordinator/coordinator_web_view.dart';
 import 'ui/pages/support/support_mobile_view.dart';
@@ -29,7 +33,11 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (context) => const LoginScreen(),
         '/coordinator': (context) => const CoordinatorWebView(),
+        '/coordinator/us': (context) => const CoordinatorUsWebView(),
+        '/coordinator/reports': (context) => const CoordinatorReportWebView(),
+        '/coordinator/clients': (context) => const CoordinatorClientWebView(),
         '/support': (context) => const SupportMobileView(),
+        '/support/reports': (context) => const SupportMobileReportView(),
       },
     );
   }
