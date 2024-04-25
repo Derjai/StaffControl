@@ -7,7 +7,7 @@ class SupportMobileReportView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Reporte de Trabajo'),
+        title: const Text('Work Report'),
         backgroundColor: Theme.of(context).colorScheme.primary,
       ),
       body: Padding(
@@ -16,7 +16,7 @@ class SupportMobileReportView extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             const Text(
-              'ID y Nombre del Cliente',
+              'ID & Client Name',
               style: TextStyle(
                 fontSize: 16.0,
                 fontWeight: FontWeight.bold,
@@ -26,13 +26,13 @@ class SupportMobileReportView extends StatelessWidget {
             const SizedBox(height: 5.0),
             TextFormField(
               decoration: const InputDecoration(
-                hintText: 'Ingrese ID y Nombre del Cliente',
+                hintText: 'Type the ID and Client Name here',
                 border: OutlineInputBorder(),
               ),
             ),
             const SizedBox(height: 20.0),
             const Text(
-              'Descripción del Problema',
+              'Problem Description',
               style: TextStyle(
                 fontSize: 16.0,
                 fontWeight: FontWeight.bold,
@@ -42,7 +42,7 @@ class SupportMobileReportView extends StatelessWidget {
             const SizedBox(height: 5.0),
             TextFormField(
               decoration: const InputDecoration(
-                hintText: 'Ingrese la descripción del problema',
+                hintText: 'Fill the problem description here',
                 border: OutlineInputBorder(),
               ),
               maxLines: 3,
@@ -55,7 +55,7 @@ class SupportMobileReportView extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       const Text(
-                        'Hora de Inicio',
+                        'Start Time',
                         style: TextStyle(
                           fontSize: 16.0,
                           fontWeight: FontWeight.bold,
@@ -65,7 +65,7 @@ class SupportMobileReportView extends StatelessWidget {
                       const SizedBox(height: 5.0),
                       TextFormField(
                         decoration: const InputDecoration(
-                          hintText: 'Ingrese la hora de inicio',
+                          hintText: 'Enter the start time here',
                           border: OutlineInputBorder(),
                         ),
                         keyboardType: TextInputType.datetime,
@@ -79,7 +79,7 @@ class SupportMobileReportView extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       const Text(
-                        'Duración del Trabajo (minutos)',
+                        'Duration (min)',
                         style: TextStyle(
                           fontSize: 16.0,
                           fontWeight: FontWeight.bold,
@@ -89,7 +89,7 @@ class SupportMobileReportView extends StatelessWidget {
                       const SizedBox(height: 5.0),
                       TextFormField(
                         decoration: const InputDecoration(
-                          hintText: 'Ingrese la duración del trabajo',
+                          hintText: 'Enter the duration in minutes here',
                           border: OutlineInputBorder(),
                         ),
                         keyboardType: TextInputType.number,
@@ -104,7 +104,7 @@ class SupportMobileReportView extends StatelessWidget {
               onPressed: () {
                 // Lógica para guardar el reporte de trabajo
               },
-              child: const Text('Guardar Reporte'),
+              child: const Text('Save Report'),
             ),
           ],
         ),

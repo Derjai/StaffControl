@@ -7,7 +7,7 @@ class CoordinatorUsWebView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Usuarios de Soporte'),
+        title: const Text('Support Users'),
         backgroundColor: Theme.of(context).colorScheme.primary,
       ),
       body: SingleChildScrollView(
@@ -31,19 +31,19 @@ class CoordinatorUsWebView extends StatelessWidget {
                   ),
                   DataColumn(
                     label: Text(
-                      'Nombre',
+                      'Name',
                       style: TextStyle(fontStyle: FontStyle.italic),
                     ),
                   ),
                   DataColumn(
                     label: Text(
-                      'Correo',
+                      'Email',
                       style: TextStyle(fontStyle: FontStyle.italic),
                     ),
                   ),
                   DataColumn(
                     label: Text(
-                      'Clave',
+                      'Password',
                       style: TextStyle(fontStyle: FontStyle.italic),
                     ),
                   ),
@@ -83,21 +83,21 @@ class CoordinatorUsWebView extends StatelessWidget {
                   onPressed: () {
                     // Acción para el botón de Crear
                   },
-                  child: const Text('Crear'),
+                  child: const Text('Create'),
                 ),
                 const SizedBox(width: 10.0),
                 ElevatedButton(
                   onPressed: () {
                     // Acción para el botón de Actualizar
                   },
-                  child: const Text('Actualizar'),
+                  child: const Text('Update'),
                 ),
                 const SizedBox(width: 10.0),
                 ElevatedButton(
                   onPressed: () {
                     // Acción para el botón de Borrar
                   },
-                  child: const Text('Borrar'),
+                  child: const Text('Delete'),
                 ),
               ],
             ),

@@ -20,14 +20,17 @@ class MyApp extends StatelessWidget {
       title: 'Staff Control',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(
-            seedColor: const Color.fromARGB(227, 238, 212, 110)),
+        primaryColor: Colors.blueGrey[800],
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
-            backgroundColor: const Color.fromARGB(226, 208, 184, 87),
+            backgroundColor: Colors.blueGrey[800],
           ),
         ),
         useMaterial3: true,
+        colorScheme: ColorScheme.fromSwatch(
+          primarySwatch: Colors.blueGrey,
+          accentColor: Colors.cyan[600],
+        ).copyWith(secondary: Colors.cyan[600]),
       ),
       initialRoute: '/',
       routes: {
