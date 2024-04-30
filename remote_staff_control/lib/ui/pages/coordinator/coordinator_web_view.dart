@@ -6,52 +6,63 @@ class CoordinatorWebView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Bienvenido Coordinador!'),
-        backgroundColor: Theme.of(context).colorScheme.primary,
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Container(
-              margin: const EdgeInsets.only(bottom: 20.0),
-              child: const Text(
-                '¿Qué quieres hacer hoy?',
-                style: TextStyle(
-                  fontSize: 24.0,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                ElevatedButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, '/coordinator/us');
-                  },
-                  child: const Text('Administrar Usuarios de Soporte'),
-                ),
-                const SizedBox(width: 10.0),
-                ElevatedButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, '/coordinator/clients');
-                  },
-                  child: const Text('Administrar Clientes'),
-                ),
-              ],
-            ),
-            const SizedBox(height: 10.0),
-            ElevatedButton(
+        appBar: AppBar(
+          title: const Text('Welcome Back Coordinator!'),
+          backgroundColor: Theme.of(context).colorScheme.primary,
+          actions: <Widget>[
+            IconButton(
+              icon: const Icon(Icons.logout),
               onPressed: () {
-                Navigator.pushNamed(context, '/coordinator/reports');
+                Navigator.pushNamed(context, '/');
               },
-              child: const Text('Calificar Reportes'),
             ),
           ],
         ),
-      ),
-    );
+        drawer: Drawer(
+            child: ListView(padding: EdgeInsets.zero, children: <Widget>[
+          UserAccountsDrawerHeader(
+            decoration:
+                BoxDecoration(color: Theme.of(context).colorScheme.primary),
+            accountName: const Text('Navigation Menu'),
+            accountEmail: null,
+            currentAccountPicture: null,
+          ),
+          ListTile(
+            leading: const Icon(Icons.person_add),
+            title: const Text('Manage Clients'),
+            onTap: () {
+              Navigator.pushNamed(context, '/coordinator/clients');
+            },
+          ),
+          ListTile(
+            leading: const Icon(Icons.support_agent),
+            title: const Text('Manage Support Users'),
+            onTap: () {
+              Navigator.pushNamed(context, '/coordinator/us');
+            },
+          ),
+          ListTile(
+            leading: const Icon(Icons.reviews),
+            title: const Text('Rate Reports'),
+            onTap: () {
+              Navigator.pushNamed(context, '/coordinator/reports');
+            },
+          ),
+        ])),
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Expanded(
+                  child: ListView.builder(
+                      itemCount: 5,
+                      itemBuilder: (context, index) {
+                        return const ListTile(
+                          title: null, //Text(reports[index].title),
+                        );
+                      }))
+            ],
+          ),
+        ));
   }
 }

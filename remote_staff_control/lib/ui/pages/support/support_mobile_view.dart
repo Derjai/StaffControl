@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 
 class SupportMobileView extends StatelessWidget {
@@ -5,34 +7,26 @@ class SupportMobileView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Bienvenido Usuario de Soporte!'),
-        backgroundColor: Theme.of(context).colorScheme.primary,
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Container(
-              margin: const EdgeInsets.only(bottom: 20.0),
-              child: const Text(
-                '¿Qué quieres hacer hoy?',
-                style: TextStyle(
-                  fontSize: 24.0,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-            const SizedBox(height: 10.0),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pushNamed(context, '/support/reports');
-              },
-              child: const Text('Crear Reporte'),
-            ),
-          ],
+        appBar: AppBar(
+          title: const Text('Welcome Back Support!'),
+          backgroundColor: Theme.of(context).colorScheme.primary,
         ),
-      ),
-    );
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Expanded(
+                child: ListView(),
+              )
+            ],
+          ),
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            Navigator.pushNamed(context, '/support/report');
+          },
+          backgroundColor: Theme.of(context).colorScheme.secondary,
+          child: const Icon(Icons.add),
+        ));
   }
 }
