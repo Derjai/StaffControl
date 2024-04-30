@@ -7,7 +7,7 @@ class CoordinatorClientWebView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Clientes'),
+        title: const Text('Clients'),
         backgroundColor: Theme.of(context).colorScheme.primary,
       ),
       body: SingleChildScrollView(
@@ -31,7 +31,7 @@ class CoordinatorClientWebView extends StatelessWidget {
                   ),
                   DataColumn(
                     label: Text(
-                      'Nombre',
+                      'Name',
                       style: TextStyle(fontStyle: FontStyle.italic),
                     ),
                   ),
@@ -65,21 +65,21 @@ class CoordinatorClientWebView extends StatelessWidget {
                   onPressed: () {
                     // Acción para el botón de Crear
                   },
-                  child: const Text('Crear'),
+                  child: const Text('Create'),
                 ),
                 const SizedBox(width: 10.0),
                 ElevatedButton(
                   onPressed: () {
                     // Acción para el botón de Actualizar
                   },
-                  child: const Text('Actualizar'),
+                  child: const Text('Update'),
                 ),
                 const SizedBox(width: 10.0),
                 ElevatedButton(
                   onPressed: () {
                     // Acción para el botón de Borrar
                   },
-                  child: const Text('Borrar'),
+                  child: const Text('Delete'),
                 ),
               ],
             ),

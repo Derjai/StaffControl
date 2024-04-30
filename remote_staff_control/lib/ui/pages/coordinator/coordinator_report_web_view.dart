@@ -14,27 +14,27 @@ class _CoordinatorReportWebViewState extends State<CoordinatorReportWebView> {
   List<Map<String, dynamic>> _reports = [
     {
       'ID': '1',
-      'Cliente': 'Juan',
-      'Hora de Inicio': '09:00',
-      'Duración': '60',
-      'Puntuación': 0,
-      'Descripción del Problema': 'Falla en el sistema de facturación'
+      'Client': 'Juan',
+      'Start Date': '09:00',
+      'Duration': '60',
+      'Rating': 0,
+      'Problem Description': 'Computer not turning on'
     },
     {
       'ID': '2',
-      'Cliente': 'María',
-      'Hora de Inicio': '10:00',
-      'Duración': '45',
-      'Puntuación': 0,
-      'Descripción del Problema': 'Problemas de conexión a internet'
+      'Client': 'María',
+      'Start Date': '10:00',
+      'Duration': '45',
+      'Rating': 0,
+      'Problem Description': 'Internet connection issues'
     },
     {
       'ID': '3',
-      'Cliente': 'Pedro',
-      'Hora de Inicio': '11:00',
-      'Duración': '30',
-      'Puntuación': 0,
-      'Descripción del Problema': 'Falla en la impresora'
+      'Client': 'Pedro',
+      'Start Date': '11:00',
+      'Duration': '30',
+      'Rating': 0,
+      'Problem Description': 'Printer not working'
     },
   ];
 
@@ -42,7 +42,7 @@ class _CoordinatorReportWebViewState extends State<CoordinatorReportWebView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Reportes de Trabajo'),
+        title: const Text('Reports'),
         backgroundColor: Theme.of(context).colorScheme.primary,
       ),
       body: Center(
@@ -58,23 +58,23 @@ class _CoordinatorReportWebViewState extends State<CoordinatorReportWebView> {
                       Text('ID', style: TextStyle(fontWeight: FontWeight.bold)),
                 ),
                 const DataColumn(
-                  label: Text('Cliente',
+                  label: Text('Client',
                       style: TextStyle(fontWeight: FontWeight.bold)),
                 ),
                 const DataColumn(
-                  label: Text('Hora de Inicio',
+                  label: Text('Start Date',
                       style: TextStyle(fontWeight: FontWeight.bold)),
                 ),
                 const DataColumn(
-                  label: Text('Duración (min)',
+                  label: Text('Duration (min)',
                       style: TextStyle(fontWeight: FontWeight.bold)),
                 ),
                 const DataColumn(
-                  label: Text('Descripción del Problema',
+                  label: Text('Problem Description',
                       style: TextStyle(fontWeight: FontWeight.bold)),
                 ),
                 const DataColumn(
-                  label: Text('Puntuación',
+                  label: Text('Rating',
                       style: TextStyle(fontWeight: FontWeight.bold)),
                 ),
               ],
@@ -87,19 +87,19 @@ class _CoordinatorReportWebViewState extends State<CoordinatorReportWebView> {
                           showEditIcon: false,
                         ),
                         DataCell(
-                          Text(report['Cliente']),
+                          Text(report['Client']),
                           showEditIcon: false,
                         ),
                         DataCell(
-                          Text(report['Hora de Inicio']),
+                          Text(report['Start Date']),
                           showEditIcon: false,
                         ),
                         DataCell(
-                          Text(report['Duración']),
+                          Text(report['Duration']),
                           showEditIcon: false,
                         ),
                         DataCell(
-                          Text(report['Descripción del Problema']),
+                          Text(report['Problem Description']),
                           showEditIcon: false,
                         ),
                         DataCell(
@@ -109,14 +109,14 @@ class _CoordinatorReportWebViewState extends State<CoordinatorReportWebView> {
                               (index) => IconButton(
                                 icon: Icon(
                                   Icons.star,
-                                  color: index < report['Puntuación']
+                                  color: index < report['Rating']
                                       ? Colors.orange
                                       : Colors.grey,
                                 ),
                                 onPressed: () {
                                   setState(() {
                                     _reports[_reports.indexOf(report)]
-                                        ['Puntuación'] = index + 1;
+                                        ['Rating'] = index + 1;
                                   });
                                 },
                               ),
