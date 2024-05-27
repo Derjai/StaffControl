@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:collection/collection.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
@@ -36,7 +38,7 @@ void main() {
     print('updateResult: $updateResult');
     expect(updateResult, isTrue);
     print('deleteUser: ${createdClient.id}');
-    bool deleteResult = await dataSource.deleteClient(createdClient!.id!);
+    bool deleteResult = await dataSource.deleteClient(createdClient.id!);
     expect(deleteResult, isTrue);
   });
 }

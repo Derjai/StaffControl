@@ -24,6 +24,7 @@ class ClientController extends GetxController {
   addClient(Client client) async {
     logInfo("Adding client");
     await _clientUseCase.addClient(client);
+    logInfo("Client added successfully");
     getClients();
   }
 

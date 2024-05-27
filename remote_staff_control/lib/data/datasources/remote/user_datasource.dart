@@ -7,14 +7,14 @@ import '../../../domain/model/user.dart';
 
 class UserDataSource implements IUserDatasource {
   final http.Client httpClient;
-  final String apiKey = 'GycAyT';
+  final String apiKey = 'evDmo7';
 
   UserDataSource({http.Client? client}) : httpClient = client ?? http.Client();
 
   @override
   Future<List<User>> getUsers() async {
     List<User> users = [];
-    var request = Uri.parse("https://retoolapi.dev/$apiKey/support")
+    var request = Uri.parse("https://retoolapi.dev/$apiKey/users")
         .resolveUri(Uri(queryParameters: {
       "format": 'json',
     }));
@@ -23,7 +23,7 @@ class UserDataSource implements IUserDatasource {
 
     if (response.statusCode == 200) {
       final data = jsonDecode(response.body);
-      users = List<User>.from(data.skip(1).map((x) => User.fromJson(x)));
+      users = List<User>.from(data.map((x) => User.fromJson(x)));
     } else {
       logError("Got error code ${response.statusCode}");
       return Future.error('Error code ${response.statusCode}');
@@ -35,7 +35,7 @@ class UserDataSource implements IUserDatasource {
   Future<bool> addUser(User user) async {
     logInfo("Adding user");
     final response = await httpClient.post(
-      Uri.parse("https://retoolapi.dev/$apiKey/support"),
+      Uri.parse("https://retoolapi.dev/$apiKey/users"),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
@@ -53,7 +53,7 @@ class UserDataSource implements IUserDatasource {
   @override
   Future<bool> updateUser(User user) async {
     final response = await httpClient.put(
-      Uri.parse("https://retoolapi.dev/$apiKey/support/${user.id}"),
+      Uri.parse("https://retoolapi.dev/$apiKey/users/${user.id}"),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
@@ -71,7 +71,7 @@ class UserDataSource implements IUserDatasource {
   @override
   Future<bool> deleteUser(int id) async {
     final response = await httpClient.delete(
-      Uri.parse("https://retoolapi.dev/$apiKey/support/$id"),
+      Uri.parse("https://retoolapi.dev/$apiKey/users/$id"),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
