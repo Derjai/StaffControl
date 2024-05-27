@@ -1,22 +1,19 @@
 import 'dart:convert';
-
 import 'package:http/http.dart' as http;
 import 'package:loggy/loggy.dart';
-import 'package:remote_staff_control/data/datasources/remote/i_client_datasource.dart';
+import '../../../domain/model/report.dart';
+import 'i_report_datasource.dart';
 
-import '../../../domain/model/client.dart';
-
-class ClientDataSource implements IClientDataSource {
+class ReportDataSource implements IReportDataSource {
   final http.Client httpClient;
-  final String apiKey = 'GcJNQQ';
+  final String apiKey = 'EELunh';
 
-  ClientDataSource({http.Client? client})
+  ReportDataSource({http.Client? client})
       : httpClient = client ?? http.Client();
-
   @override
-  Future<List<Client>> getClients() async {
-    List<Client> clients = [];
-    var request = Uri.parse("https://retoolapi.dev/$apiKey/clients")
+  Future<List<Report>> getReports() async {
+    List<Report> reports = [];
+    var request = Uri.parse("https://retoolapi.dev/$apiKey/reports")
         .resolveUri(Uri(queryParameters: {
       "format": 'json',
     }));
@@ -25,23 +22,23 @@ class ClientDataSource implements IClientDataSource {
 
     if (response.statusCode == 200) {
       final data = jsonDecode(response.body);
-      clients = List<Client>.from(data.map((x) => Client.fromJson(x)));
+      reports = List<Report>.from(data.map((x) => Report.fromJson(x)));
     } else {
       logError("Got error code ${response.statusCode}");
       return Future.error('Error code ${response.statusCode}');
     }
-    return Future.value(clients);
+    return Future.value(reports);
   }
 
   @override
-  Future<bool> addClient(Client client) async {
-    logInfo("Adding client");
+  Future<bool> addReport(Report report) async {
+    logInfo("Adding report");
     final response = await httpClient.post(
-      Uri.parse("https://retoolapi.dev/$apiKey/clients"),
+      Uri.parse("https://retoolapi.dev/$apiKey/reports"),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
-      body: jsonEncode(client.toJson()),
+      body: jsonEncode(report.toJson()),
     );
 
     if (response.statusCode == 201) {
@@ -53,13 +50,13 @@ class ClientDataSource implements IClientDataSource {
   }
 
   @override
-  Future<bool> updateClient(Client client) async {
+  Future<bool> updateReport(Report report) async {
     final response = await httpClient.put(
-      Uri.parse("https://retoolapi.dev/$apiKey/clients/${client.id}"),
+      Uri.parse("https://retoolapi.dev/$apiKey/reports/${report.id}"),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
-      body: jsonEncode(client.toJson()),
+      body: jsonEncode(report.toJson()),
     );
 
     if (response.statusCode == 200) {
@@ -71,14 +68,31 @@ class ClientDataSource implements IClientDataSource {
   }
 
   @override
-  Future<bool> deleteClient(int id) async {
+  Future<bool> deleteReport(int id) async {
     final response = await httpClient.delete(
-      Uri.parse("https://retoolapi.dev/$apiKey/clients/$id"),
+      Uri.parse("https://retoolapi.dev/$apiKey/reports/$id"),
+    );
+
+    if (response.statusCode == 200) {
+      return Future.value(true);
+    } else {
+      logError("Got error code ${response.statusCode}");
+      return Future.value(false);
+    }
+  }
+
+  @override
+  Future<bool> patchReport(int reportId, int newRating) async {
+    final response = await httpClient.patch(
+      Uri.parse("https://retoolapi.dev/$apiKey/reports/$reportId"),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
+      body: jsonEncode(<String, int>{
+        'Rating': newRating,
+      }),
     );
-    logInfo("Deleting client with id $id status code ${response.statusCode}");
+
     if (response.statusCode == 200) {
       return Future.value(true);
     } else {

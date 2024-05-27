@@ -91,7 +91,8 @@ class _LoginScreenState extends State<LoginScreen> {
                               horizontal: 50, vertical: 20),
                           textStyle: const TextStyle(fontSize: 24),
                         ),
-                        child: const Text('Login'),
+                        child: const Text('Login',
+                            style: TextStyle(color: Colors.white)),
                       ),
                     ],
                   ),
@@ -148,7 +149,8 @@ class _LoginScreenState extends State<LoginScreen> {
                           Navigator.pushNamed(context, '/support');
                         });
                       },
-                      child: const Text('Login'),
+                      child: const Text('Login',
+                          style: TextStyle(color: Colors.white)),
                     ),
                   ],
                 ),
