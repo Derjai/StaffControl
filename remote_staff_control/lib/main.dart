@@ -33,7 +33,7 @@ void main() {
   Get.put<IUserDatasource>(UserDataSource());
   Get.put<IReportDataSource>(ReportDataSource());
   Get.put<IClientRepository>(ClientRepository(Get.find<IClientDataSource>()));
-  Get.put<IUserRepository>(UserRepositoty(Get.find<IUserDatasource>()));
+  Get.put<IUserRepository>(UserRepository(Get.find<IUserDatasource>()));
   Get.put<IReportRepository>(ReportRepository(Get.find<IReportDataSource>()));
   Get.put(ClientUseCase(Get.find<IClientRepository>()));
   Get.put(UserUseCase(Get.find<IUserRepository>()));
