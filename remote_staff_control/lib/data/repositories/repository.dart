@@ -9,9 +9,9 @@ import '../../domain/repositories/i_client_repository.dart';
 import '../../domain/repositories/i_report_repository.dart';
 import '../datasources/remote/i_client_datasource.dart';
 
-class UserRepositoty implements IUserRepository {
+class UserRepository implements IUserRepository {
   final IUserDatasource _userDataSource;
-  UserRepositoty(this._userDataSource);
+  UserRepository(this._userDataSource);
 
   @override
   Future<List<User>> getUsers() async => await _userDataSource.getUsers();
