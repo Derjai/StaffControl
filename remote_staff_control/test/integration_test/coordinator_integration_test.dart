@@ -44,7 +44,8 @@ void main() {
   });
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
 
-  testWidgets('Login with valid credentials', (WidgetTester tester) async {
+  testWidgets('Login with valid credentials, create , edit and delete a client',
+      (WidgetTester tester) async {
     await tester.pumpWidget(const MyApp());
     await tester.pumpAndSettle();
 
@@ -59,5 +60,51 @@ void main() {
 
     await tester.pumpAndSettle();
     expect(find.text('Welcome Back Coordinator!'), findsOneWidget);
+
+    final drawerButton = find.byIcon(Icons.menu);
+    await tester.tap(drawerButton);
+    await tester.pumpAndSettle();
+
+    final clientInterfaceListTile = find.text('Manage Clients');
+    await tester.tap(clientInterfaceListTile);
+    await tester.pumpAndSettle();
+
+    expect(find.text('Clients'), findsOneWidget);
+
+    final createButton1 = find.text('Create').first;
+    await tester.tap(createButton1);
+    await tester.pumpAndSettle();
+
+    final clientNameField = find.byType(TextField).first;
+    await tester.enterText(clientNameField, 'Test');
+
+    final createButton2 = find.text('Create').last;
+    await tester.tap(createButton2);
+    await tester.pumpAndSettle();
+    expect(find.text('Test'), findsOneWidget);
+
+    final editButton = find.text('Update').first;
+    await tester.tap(editButton);
+    await tester.pumpAndSettle();
+
+    final clientIdUpdateField = find.byType(TextField).first;
+    await tester.enterText(clientIdUpdateField, 52.toString());
+    final clientNameUpdateField = find.byType(TextField).last;
+    await tester.enterText(clientNameUpdateField, 'Updated');
+
+    final updateButton = find.text('Update').last;
+    await tester.tap(updateButton);
+    await tester.pumpAndSettle();
+    expect(find.text('Updated'), findsOneWidget);
+
+    final deleteButton = find.text('Delete').first;
+    await tester.tap(deleteButton);
+    await tester.pumpAndSettle();
+    final clientIdDeleteField = find.byType(TextField).first;
+    await tester.enterText(clientIdDeleteField, 52.toString());
+    final deleteButton2 = find.text('Delete').last;
+    await tester.tap(deleteButton2);
+    await tester.pumpAndSettle();
+    expect(find.text('Updated'), findsNothing);
   });
 }
